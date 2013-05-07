@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VDisk sdk</string>
+
+    <!-- OAuthActivity类中使用 -->
+    <string name="auth_label">Authorize</string>
+    <string name="use_weibo_token">Login with Weibo Token</string>
+
+    <!-- VDiskTestActivity类中界面列表使用 -->
+    <string name="user_related">User Related</string>
+    <string name="user_info">User Information</string>
+    <string name="file_and_dir_related">File and Directory Related</string>
+    <string name="take_photo_upload">Upload Pictures</string>
+    <string name="bigfile_seg_upload">Upload Large file</string>
+    <string name="download_file">Download</string>
+    <string name="dir_info">Directory Information</string>
+    <string name="file_info">File  Information</string>
+    <string name="history_version">History Version</string>
+    <string name="search_files">Search</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="get_download_link">Get Download Link</string>
+    <string name="get_file_and_dir_change_log">Get Operation Log</string>
+    <string name="file_edit">File Edit</string>
+    <string name="copy_file">Copy</string>
+    <string name="create_dir">Create Directory</string>
+    <string name="del_file_or_dir">Delete</string>
+    <string name="move_file">Move File</string>
+    <string name="restore_to_aversion">Restore to a Version</string>
+    <string name="share_related">Share Related</string>
+    <string name="share_files">Share Files</string>
+    <string name="cancel_sharing">Cancel Sharing</string>
+    <string name="save_to_vdisk">Save to VDisk</string>
+    <string name="create_copy_ref">Create Copy Reference</string>
+    <string name="get_link_from_ref">Get Download Link from Copy Reference</string>
+    <string name="htc_special_int">API for HTC</string>
+    <string name="get_all_subdir">Get All Subdirectories in Specified Directory</string>
+    <string name="get_all_pic">Get All Pictures in Specified Directory</string>
+    <string name="global_setting">Setting</string>
+    <string name="user_logout">User Logout</string>
+
+    <!-- VDiskTestActivity类中报告异常使用 -->
+    <string name="exception_vdisk_io">Abnormal Network Connection</string>
+    <string name="exception_vdisk_parse">Abnormal Data Analysis</string>
+    <string name="exception_vdisk_local_storage_full">No Local Storage Space</string>
+    <string name="exception_vdisk_unlinked">Not Logged In or Token has Expired</string>
+    <string name="exception_vdisk_file_size">This File is TOO Big</string>
+    <string name="exception_vdisk_partial_file">The Transmission was Not completed</string>
+    <string name="exception_vdisk_unknown">Unknown Exception</string>
+
+    <!-- VDiskTestActivity类中对话框使用 -->
+    <string name="please_input_pic_name">Please enter the name of the picture to save</string>
+    <string name="please_input_up_file_local_path">please enter the local path of the uploaded file</string>
+    <string name="please_input_up_file_vdisk_path">Please enter the VDisk path to upload files</string>
+    <string name="please_input_down_file_path">Please enter the file path to download</string>
+    <string name="please_input_dir_path">Please enter the directory path</string>
+    <string name="please_input_file_path">Please enter the file path</string>
+    <string name="please_input_file_or_dir_path">Please enter the file or directory path</string>
+    <string name="please_input_restore_to_version">Please enter the version to restore</string>
+    <string name="search_file_in_vdisk">Search files in VDisk</string>
+    <string name="please_input_keyword">Please enter the key word</string>
+    <string name="please_input_file_path_to_share">Please enter the file path to share</string>
+    <string name="please_input_file_path_to_cancel_sharing">Please enter the file path to cancel sharing</string>
+    <string name="down_thumbnail">download the thumbnail</string>
+    <string name="please_input_down_pic_path">Please enter the path to donwload picture</string>
+    <string name="please_input_file_copy_ref">Please enter the copy reference of the file</string>
+    <string name="please_input_target_file_path">Please enter the target file path</string>
+    <string name="please_input_target_dir_path">Please enter the target directory path</string>
+    <string name="please_input_source_file_path">Please enter the source file path</string>
+    <string name="please_input_list_start_position">Please enter the starting position of the list(Can be empty)</string>
+
+    <!-- VDiskTestActivity类中其他部分使用 -->
+    <string name="wait_for_load">Please wait for loading…</string>
+    <string name="find_no_camera">There doesn\'t seem to be a camera.</string>
+    <string name="total_space">Total space</string>
+    <string name="used_space">Space used</string>
+    <string name="abyte">bytes</string>
+    <string name="adir">Folder</string>
+    <string name="file_name">File name</string>
+    <string name="file_size">File size</string>
+    <string name="edit_time">Modification time</string>
+    <string name="file_path">File path</string>
+    <string name="share_path_is">The shared link is</string>
+    <string name="down_link_is">The download link is</string>
+    <string name="past_time_is">The expiration time is</string>
+    <string name="suc_to_cancel_file">Cancel the sharing of file</string>
+    <string name="sharing">on success</string>
+    <string name="version">version</string>
+    <string name="to_version">to version</string>
+    <string name="suc_restore_file">Success to restore file</string>
+    <string name="be_suc">Success</string>
+    <string name="del_file">Delete file</string>
+    <string name="suc_create_named">Generate copy named</string>
+    <string name="acopy">on success.</string>
+    <string name="created_copy_ref_is">The generated copy reference is</string>
+    <string name="suc_save_file">Successfully save the file</string>
+    <string name="to_my_vdisk">to my VDisk</string>
+    <string name="album_url">Album URL</string>
+    <string name="nothing">Null</string>
+    <string name="pic_url">Picture URL</string>
+    <string name="be_sure">OK</string>
+    <string name="input_cannot_enmpty">No input is invalid</string>
+    <string name="be_cancel">Cancel</string>
+
+    <!-- VDiskResultActivity类中使用 -->
+    <string name="result_is_empty">The Result is Empty"</string>
+
+    <!-- OAuthActivity类中使用 -->
+    <string name="token_cannot_empty">Weibo token cannot be empty,please set it in your code.</string>
+    <string name="warning">Warning</string>
+
+    <!-- UploadPicture和LargeFileUpload及DownloadFile类中使用 -->
+    <string name="suc_up_pic">Image successfully uploaded</string>
+    <string name="suc_up_file">File successfully uploaded</string>
+    <string name="be_uploading">Uploading</string>
+    <string name="be_downloading">Downloading</string>
+    <string name="down_url">DownloadURL</string>
+
+    <!-- Upload Setting -->
+    <string name="setting_debug_mode">Debug Mode</string>
+    <string name="setting_https_upload">Https Upload</string>
+    <string name="setting_debug_log_path">Debug Log Path</string>
+    <string name="setting_upload_socket_timeout">Upload Socket Timeout /s</string>
+    <string name="setting_upload_response_timeout">Upload Response Timeout /s</string>
+    <string name="setting_read_me">Read Me</string>
+    <string name="setting_save">Save</string>
+    <string name="setting_cancel">Cancel</string>
+
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">微盘sdk</string>
+
+    <!-- OAuthActivity类中使用 -->
+    <string name="auth_label">点击授权</string>
+    <string name="use_weibo_token">使用微博token登录</string>
+
+    <!-- VDiskTestActivity类中界面列表使用 -->
+    <string name="user_related">用户相关</string>
+    <string name="user_info">用户信息</string>
+    <string name="file_and_dir_related">文件，目录相关</string>
+    <string name="take_photo_upload">拍照上传</string>
+    <string name="bigfile_seg_upload">大文件分段上传</string>
+    <string name="download_file">下载</string>
+    <string name="dir_info">文件夹信息</string>
+    <string name="file_info">文件信息</string>
+    <string name="history_version">历史版本</string>
+    <string name="search_files">搜索</string>
+    <string name="thumbnail">缩略图</string>
+    <string name="get_download_link">获取下载链接</string>
+    <string name="get_file_and_dir_change_log">获取用户文件和目录操作变化记录</string>
+    <string name="file_edit">文件编辑</string>
+    <string name="copy_file">复制</string>
+    <string name="create_dir">新建文件夹</string>
+    <string name="del_file_or_dir">删除</string>
+    <string name="move_file">移动</string>
+    <string name="restore_to_aversion">还原</string>
+    <string name="share_related">分享相关</string>
+    <string name="share_files">分享</string>
+    <string name="cancel_sharing">取消分享</string>
+    <string name="save_to_vdisk">保存到微盘</string>
+    <string name="create_copy_ref">创建拷贝引用</string>
+    <string name="get_link_from_ref">根据拷贝引用获取下载链接</string>
+    <string name="htc_special_int">HTC定制接口</string>
+    <string name="get_all_subdir">获取指定目录下所有子目录</string>
+    <string name="get_all_pic">获取指定目录下所有图片</string>
+    <string name="global_setting">设置页面</string>
+    <string name="user_logout">用户注销</string>
+
+    <!-- VDiskTestActivity类中报告异常使用 -->
+    <string name="exception_vdisk_io">网络连接异常</string>
+    <string name="exception_vdisk_parse">数据解析异常</string>
+    <string name="exception_vdisk_local_storage_full">本地存储空间已满</string>
+    <string name="exception_vdisk_unlinked">未登录或token过期</string>
+    <string name="exception_vdisk_file_size">文件大小超出限制</string>
+    <string name="exception_vdisk_partial_file">传输未完成</string>
+    <string name="exception_vdisk_unknown">未知异常</string>
+
+    <!-- VDiskTestActivity类中对话框使用 -->
+    <string name="please_input_pic_name">请输入要保存的图片名称</string>
+    <string name="please_input_up_file_local_path">请输入上传文件的本地路径</string>
+    <string name="please_input_up_file_vdisk_path">请输入上传文件的微盘路径</string>
+    <string name="please_input_down_file_path">请输入要下载的文件路径</string>
+    <string name="please_input_dir_path">请输入文件夹路径</string>
+    <string name="please_input_file_path">请输入文件路径</string>
+    <string name="please_input_file_or_dir_path">请输入文件/文件夹路径</string>
+    <string name="please_input_restore_to_version">请输入还原至哪个版本号</string>
+    <string name="search_file_in_vdisk">搜索微盘文件</string>
+    <string name="please_input_keyword">请输入关键词</string>
+    <string name="please_input_file_path_to_share">请输入要分享的文件路径</string>
+    <string name="please_input_file_path_to_cancel_sharing">请输入要取消分享的文件路径</string>
+    <string name="down_thumbnail">下载缩略图</string>
+    <string name="please_input_down_pic_path">请输入要下载的图片路径</string>
+    <string name="please_input_file_copy_ref">请输入文件的拷贝引用</string>
+    <string name="please_input_target_file_path">请输入目标文件路径</string>
+    <string name="please_input_target_dir_path">请输入目标文件夹路径</string>
+    <string name="please_input_source_file_path">请输入源文件路径</string>
+    <string name="please_input_list_start_position">请输入列表的起始位置(可以为空)</string>
+
+    <!-- VDiskTestActivity类中其他部分使用 -->
+    <string name="wait_for_load">正在加载，请稍候…</string>
+    <string name="find_no_camera">无法连接到相机设备</string>
+    <string name="total_space">总空间</string>
+    <string name="used_space">已使用空间</string>
+    <string name="abyte">字节</string>
+    <string name="adir">文件夹</string>
+    <string name="file_name">文件名</string>
+    <string name="file_size">文件大小</string>
+    <string name="edit_time">修改时间</string>
+    <string name="file_path">文件路径</string>
+    <string name="share_path_is">分享链接是</string>
+    <string name="down_link_is">下载链接是</string>
+    <string name="past_time_is">过期时间是</string>
+    <string name="suc_to_cancel_file">成功取消对文件</string>
+    <string name="sharing">的分享</string>
+    <string name="version">版本号</string>
+    <string name="to_version">至版本</string>
+    <string name="suc_restore_file">成功还原文件</string>
+    <string name="be_suc">成功</string>
+    <string name="del_file">删除文件</string>
+    <string name="suc_create_named">成功生成了名为</string>
+    <string name="acopy">的拷贝</string>
+    <string name="created_copy_ref_is">生成的拷贝引用是</string>
+    <string name="suc_save_file">成功保存文件</string>
+    <string name="to_my_vdisk">到我的微盘</string>
+    <string name="album_url">封面地址</string>
+    <string name="nothing">无</string>
+    <string name="pic_url">图片地址</string>
+    <string name="be_sure">确定</string>
+    <string name="input_cannot_enmpty">输入内容不能为空</string>
+    <string name="be_cancel">取消</string>
+
+    <!-- VDiskResultActivity类中使用 -->
+    <string name="result_is_empty">结果为空</string>
+    
+     <!-- OAuthActivity类中使用 -->
+    <string name="token_cannot_empty">微博token不能为空，请在代码中进行设置</string>
+    <string name="warning">警告</string>
+    
+    <!--UploadPicture和LargeFileUpload及DownloadFile类中使用-->
+    <string name="suc_up_pic">照片已成功上传</string>
+    <string name="suc_up_file">文件已成功上传</string>
+    <string name="be_uploading">正在上传</string>
+    <string name="be_downloading">正在下载</string>
+    <string name="down_url">下载地址</string>
+ 
+</resources>
