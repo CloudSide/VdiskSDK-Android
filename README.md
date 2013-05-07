@@ -18,7 +18,7 @@ http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc
 
 [![](http://service.t.sina.com.cn/widget/qmd/1656360925/02781ba4/4.png)](http://weibo.com/smcz)
 
-[![](http://service.t.sina.com.cn/widget/qmd/1727404360/02781ba4/4.png)](http://http://weibo.com/yinkai1205)
+[![](http://service.t.sina.com.cn/widget/qmd/1727404360/02781ba4/4.png)](http://weibo.com/yinkai1205)
 
 [![](http://service.t.sina.com.cn/widget/qmd/1757517965/02781ba4/4.png)](http://weibo.com/lilytong)
 
