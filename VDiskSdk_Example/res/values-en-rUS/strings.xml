@@ -51,7 +51,7 @@
     <!-- VDiskTestActivity类中对话框使用 -->
     <string name="please_input_pic_name">Please enter the name of the picture to save</string>
     <string name="please_input_up_file_local_path">please enter the local path of the uploaded file</string>
-    <string name="please_input_up_file_vdisk_path">Please enter the VDisk path to upload files</string>
+    <string name="please_input_up_file_vdisk_path">Please enter the VDisk directory path to upload files</string>
     <string name="please_input_down_file_path">Please enter the file path to download</string>
     <string name="please_input_dir_path">Please enter the directory path</string>
     <string name="please_input_file_path">Please enter the file path</string>

@@ -51,7 +51,7 @@
     <!-- VDiskTestActivity类中对话框使用 -->
     <string name="please_input_pic_name">请输入要保存的图片名称</string>
     <string name="please_input_up_file_local_path">请输入上传文件的本地路径</string>
-    <string name="please_input_up_file_vdisk_path">请输入上传文件的微盘路径</string>
+    <string name="please_input_up_file_vdisk_path">请输入上传文件的微盘文件夹路径</string>
     <string name="please_input_down_file_path">请输入要下载的文件路径</string>
     <string name="please_input_dir_path">请输入文件夹路径</string>
     <string name="please_input_file_path">请输入文件路径</string>

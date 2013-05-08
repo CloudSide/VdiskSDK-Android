@@ -1217,7 +1217,7 @@ public class VDiskTestActivity extends Activity {
 	 * @param srcPath
 	 *            本地文件的路径 Source path of local file
 	 * @param desPath
-	 *            云端目标文件的路径 Target path of file in the cloud
+	 *            云端目标文件的文件夹路径 Target directory path of file in the cloud
 	 */
 	private void uploadLargeFile(String srcPath, String desPath) {
 		File file = new File(srcPath);
