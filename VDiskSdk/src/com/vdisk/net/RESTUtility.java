@@ -690,7 +690,7 @@ public class RESTUtility {
 			return "https://" + host + target;
 		}
 
-		if (host.equals("upload.openapi.vdisk.me")) {
+		if (host.equals("upload-vdisk.sina.com.cn")) {
 			return "http://" + host + target;
 		}
 

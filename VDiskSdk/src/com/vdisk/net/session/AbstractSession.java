@@ -74,10 +74,10 @@ import com.vdisk.utils.Signature;
  */
 public abstract class AbstractSession implements Session {
 
-	private static final String API_SERVER = "openapi.vdisk.me";
-	private static final String UPLOAD_SERVER = "upload.openapi.vdisk.me";
+	private static final String API_SERVER = "api.weipan.cn";
+	private static final String UPLOAD_SERVER = "upload-vdisk.sina.com.cn";
 	private static final String UPLOAD_SERVER_HTTPS = "upload-vdisk.sina.com.cn:4443";
-	private static final String CONTENT_SERVER = "api-content.vdisk.me";
+	private static final String CONTENT_SERVER = "api-content.weipan.cn";
 	private static final String WEB_SERVER = "vdisk.weibo.com";
 
 	// If true, use https to upload a file in the api of "/files_put/"
