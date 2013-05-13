@@ -87,7 +87,7 @@ public class VDiskAPI<SESS_T extends Session> {
 	public static int UPLOAD_SO_TIMEOUT_MS = 1 * 60 * 1000; // 1 minute
 	private static final int UPLOAD_MERGE_TIMEOUT_MS = 2 * 60 * 1000;
 	
-	public static int UPLOAD_RESPONSE_TIMEOUT_S = 20; //20 seconds
+	public static int UPLOAD_RESPONSE_TIMEOUT_S = 60; //1 minute
 
 	private static final String DOWNLOAD_TEMP_FILE_SUFFIX = ".vdisktemp";
 
