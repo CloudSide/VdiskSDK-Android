@@ -27,7 +27,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -88,9 +87,8 @@ public class VDiskAPI<SESS_T extends Session> {
 	private static final int UPLOAD_MERGE_TIMEOUT_MS = 2 * 60 * 1000;
 	
 	public static int UPLOAD_RESPONSE_TIMEOUT_S = 60; //1 minute
-	
 
-	private static final String DOWNLOAD_TEMP_FILE_SUFFIX = ".vdisktemp";
+	public static final String DOWNLOAD_TEMP_FILE_SUFFIX = ".vdisktemp";
 
 	private static String SINA_STORAGE_SERVICE_HOST;
 
@@ -149,7 +147,6 @@ public class VDiskAPI<SESS_T extends Session> {
 	/**
 	 * Information about big file sections for uploading.
 	 */
-	@SuppressLint("UseSparseArrays")
 	public static class VDiskUploadFileInfo implements Serializable {
 
 		private static final long serialVersionUID = 1L;

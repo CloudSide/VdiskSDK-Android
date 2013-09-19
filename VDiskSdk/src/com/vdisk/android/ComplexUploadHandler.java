@@ -261,7 +261,7 @@ public abstract class ComplexUploadHandler extends ProgressListener {
 	 * @return
 	 * @throws VDiskException
 	 */
-	private String serialize(Object o) throws VDiskException {
+	protected String serialize(Object o) throws VDiskException {
 		String serStr;
 		ObjectOutputStream objectOutputStream = null;
 		ByteArrayOutputStream byteArrayOutputStream = null;
@@ -303,7 +303,7 @@ public abstract class ComplexUploadHandler extends ProgressListener {
 	 * @return
 	 * @throws VDiskException
 	 */
-	private Object deserialize(String serStr) throws VDiskException {
+	protected Object deserialize(String serStr) throws VDiskException {
 		ByteArrayInputStream byteArrayInputStream = null;
 		ObjectInputStream objectInputStream = null;
 		try {
