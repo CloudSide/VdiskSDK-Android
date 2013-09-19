@@ -3,4 +3,6 @@
 
     <string name="app_name">微盘Sdk</string>
 
+    <string name="defaultlocale">DefaultLocale</string>
+
 </resources>

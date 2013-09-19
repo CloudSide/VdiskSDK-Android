@@ -48,7 +48,6 @@ import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -73,7 +72,6 @@ import com.vdisk.utils.Signature;
  * modified times returned in metadata, or (in very rare circumstances) writing
  * your own API calls.
  */
-@SuppressLint("DefaultLocale")
 public class RESTUtility {
 
 	private RESTUtility() {
@@ -861,7 +859,6 @@ public class RESTUtility {
 		// hack to prevent MalformedURLException
 		try {
 			URL u = new URL(url);
-			Log.d(TAG, u.getQuery());
 			Bundle b = decodeUrl(u.getQuery());
 			return b;
 		} catch (MalformedURLException e) {

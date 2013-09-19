@@ -65,3 +65,9 @@ VDiskSdk_Example/.classpath
 *.zip
 
 .idea/.name
+
+VDiskSdk/.classpath
+
+VDiskSdk_Example/.classpath
+
+VDiskSdk_Example/.classpath

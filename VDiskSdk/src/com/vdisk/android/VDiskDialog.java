@@ -221,28 +221,31 @@ public class VDiskDialog extends Dialog {
 
 		final String code = values.getString("code");
 
-		new Thread() {
+		if (code != null) {
+			new Thread() {
 
-			public void run() {
-				Message msg = new Message();
-				try {
-					mOAuth2AccessToken = mSession.getOAuth2AccessToken(code,
-							getContext());
-				} catch (VDiskException e) {
-					msg.what = FAILED;
-					Bundle error = new Bundle();
-					error.putSerializable("error", e);
-					msg.setData(error);
+				public void run() {
+					Message msg = new Message();
+					try {
+						mOAuth2AccessToken = mSession.getOAuth2AccessToken(
+								code, getContext());
+					} catch (VDiskException e) {
+						msg.what = FAILED;
+						Bundle error = new Bundle();
+						error.putSerializable("error", e);
+						msg.setData(error);
+						handler.sendMessage(msg);
+						return;
+					}
+					values.putSerializable(VDiskAuthSession.OAUTH2_TOKEN,
+							mOAuth2AccessToken);
+					msg.setData(values);
+					msg.what = SUCCESS;
 					handler.sendMessage(msg);
-					return;
-				}
-				values.putSerializable(VDiskAuthSession.OAUTH2_TOKEN,
-						mOAuth2AccessToken);
-				msg.setData(values);
-				msg.what = SUCCESS;
-				handler.sendMessage(msg);
-			};
-		}.start();
+				};
+			}.start();
+		}
+
 	}
 
 }
