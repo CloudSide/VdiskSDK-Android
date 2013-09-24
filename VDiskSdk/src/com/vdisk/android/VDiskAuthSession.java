@@ -230,6 +230,7 @@ public class VDiskAuthSession extends AbstractSession {
 		AppKeyPair appKeyPair = getAppKeyPair();
 		String[] params = { "client_id", appKeyPair.key, "redirect_uri",
 				mRedirectUrl, "display", "mobile" };
+		
 		String url = URL_OAUTH2_ACCESS_AUTHORIZE + "?"
 				+ RESTUtility.urlencode(params);
 		if (context.checkCallingOrSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {

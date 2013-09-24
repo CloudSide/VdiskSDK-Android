@@ -85,12 +85,12 @@ public interface Session {
     /**
      * Returns the VDisk content server. Changing this will break things.
      */
-    public String getContentServer();
+   // public String getContentServer();
 
     /**
      * Returns the VDisk web server. Changing this will break things.
      */
-    public String getWebServer();
+   // public String getWebServer();
     
     /**
      * Returns the VDisk upload server. Changing this will break things.

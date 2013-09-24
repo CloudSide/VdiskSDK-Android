@@ -59,6 +59,7 @@ import com.vdisk.net.exception.VDiskParseException;
 import com.vdisk.net.exception.VDiskSSLException;
 import com.vdisk.net.exception.VDiskServerException;
 import com.vdisk.net.exception.VDiskUnlinkedException;
+import com.vdisk.net.session.AbstractSession;
 import com.vdisk.net.session.Session;
 import com.vdisk.net.session.Session.ProxyInfo;
 import com.vdisk.net.session.WeiboAccessToken;
@@ -683,12 +684,7 @@ public class RESTUtility {
 			return null;
 		}
 
-		int index = host.lastIndexOf(":");
-		if (index != -1) {
-			return "https://" + host + target;
-		}
-
-		if (host.equals("upload-vdisk.sina.com.cn")) {
+		if (!AbstractSession.NEED_HTTPS_UPLOAD) {
 			return "http://" + host + target;
 		}
 

@@ -23,12 +23,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.vdisk.android.ComplexUploadHandler;
@@ -85,12 +83,12 @@ public class VDiskAPI<SESS_T extends Session> {
 	private static final int SEARCH_DEFAULT_LIMIT = 1000;
 	public static int UPLOAD_SO_TIMEOUT_MS = 1 * 60 * 1000; // 1 minute
 	private static final int UPLOAD_MERGE_TIMEOUT_MS = 2 * 60 * 1000;
-	
-	public static int UPLOAD_RESPONSE_TIMEOUT_S = 60; //1 minute
+
+	public static int UPLOAD_RESPONSE_TIMEOUT_S = 60; // 1 minute
 
 	public static final String DOWNLOAD_TEMP_FILE_SUFFIX = ".vdisktemp";
 
-	private static String SINA_STORAGE_SERVICE_HOST;
+	private static String SINA_STORAGE_SERVICE_HOST = "up.sinastorage.com";
 
 	private static final long UPLOAD_DEFAULT_SECTION_SIZE = 4 * 1024 * 1024; // 4MB
 
@@ -729,7 +727,8 @@ public class VDiskAPI<SESS_T extends Session> {
 					String tempName = targetFile.getName();
 					File parent = targetFile.getParentFile();
 					if (tempName.endsWith(VDiskAPI.DOWNLOAD_TEMP_FILE_SUFFIX)) {
-						String filename = tempName.substring(0, tempName.lastIndexOf("."));
+						String filename = tempName.substring(0,
+								tempName.lastIndexOf("."));
 						File newFile = new File(parent, filename);
 						targetFile.renameTo(newFile);
 					}
@@ -1554,8 +1553,8 @@ public class VDiskAPI<SESS_T extends Session> {
 			handler.assertCanceled();
 			handler.startedWithStatus(ComplexUploadStatus.ComplexUploadStatusInitialize);
 			fileInfo = startComplexUploadMultipartInit(srcPath, desPath,
-					segmentLength, length, sha1, getS3Host(handler), overwrite,
-					parentRev);
+					segmentLength, length, sha1, SINA_STORAGE_SERVICE_HOST,
+					overwrite, parentRev);
 
 			if (fileInfo.isBlitzUpload) {
 				// 秒传成功，直接返回 //Second transmission succeed and directly return
@@ -1779,36 +1778,6 @@ public class VDiskAPI<SESS_T extends Session> {
 				segmentNum, s3Host, segmentLength, sha1, srcPath, desPath);
 
 		return fileInfo;
-	}
-
-	/**
-	 * Get the nearest server for uploading file. S3 means Sina Storage Service.
-	 * VDisk put all upload files to S3.
-	 * 
-	 * @throws VDiskException
-	 */
-	public String getS3Host(ComplexUploadHandler handler) throws VDiskException {
-		if (SINA_STORAGE_SERVICE_HOST != null) {
-			return SINA_STORAGE_SERVICE_HOST;
-		}
-
-		handler.assertCanceled();
-		handler.startedWithStatus(ComplexUploadStatus.ComplexUploadStatusLocateHost);
-		HttpResponse resp = RESTUtility.streamRequestAndResponse(
-				RequestMethod.GET, session,
-				"http://up.sinastorage.com/?extra&op=domain.json", null).response;
-		HttpEntity entity = resp.getEntity();
-
-		try {
-			String server = EntityUtils.toString(entity);
-			if (!TextUtils.isEmpty(server)) {
-				SINA_STORAGE_SERVICE_HOST = server.trim().replace("\"", "");
-			}
-			Log.d(TAG, "s3 server-->" + SINA_STORAGE_SERVICE_HOST);
-			return SINA_STORAGE_SERVICE_HOST;
-		} catch (Exception e) {
-			throw new VDiskIOException("Get S3 server failed.");
-		}
 	}
 
 	/**
@@ -2956,8 +2925,8 @@ public class VDiskAPI<SESS_T extends Session> {
 	 * 
 	 * 递归列出某目录下全部子目录。目前仅支持 root 为 basic。
 	 * 
-	 * Use recursion to list all sub-directories under the specified
-	 * directory. Currently only supports root of basic.
+	 * Use recursion to list all sub-directories under the specified directory.
+	 * Currently only supports root of basic.
 	 * 
 	 * @param targetPath
 	 *            想要获取所有相册的目标路径 Target path of all albums you want to get
@@ -3062,6 +3031,29 @@ public class VDiskAPI<SESS_T extends Session> {
 			entries.add(new Entry((Map<String, Object>) metadata));
 		}
 		return entries;
+	}
+
+	/**
+	 * 调用微盘的其他API
+	 * 
+	 * Call VDisk's other APIs.
+	 * 
+	 * @param params
+	 *            调用API所用到的参数数组 Params array
+	 * @param apiName
+	 *            API路径, 例如"/metadata/" API's path, such as "/metadata/"
+	 * @param method
+	 *            请求方法, 例如GET, POST Request method, such as GET or POST
+	 * @return JSONArray或者JSONObject Returns JSONArray or JSONObject
+	 * 
+	 * @throws VDiskException
+	 */
+	public Object callOtherAPI(String[] params, String apiName,
+			RequestMethod method) throws VDiskException {
+		assertAuthenticated();
+
+		return RESTUtility.request(method, session.getAPIServer(), apiName,
+				VERSION, params, session);
 	}
 
 	/**

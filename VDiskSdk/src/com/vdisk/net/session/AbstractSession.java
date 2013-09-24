@@ -76,9 +76,6 @@ public abstract class AbstractSession implements Session {
 
 	private static final String API_SERVER = "api.weipan.cn";
 	private static final String UPLOAD_SERVER = "upload-vdisk.sina.com.cn";
-	private static final String UPLOAD_SERVER_HTTPS = "upload-vdisk.sina.com.cn:4443";
-	private static final String CONTENT_SERVER = "api-content.weipan.cn";
-	private static final String WEB_SERVER = "vdisk.weibo.com";
 
 	// If true, use https to upload a file in the api of "/files_put/"
 	public static boolean NEED_HTTPS_UPLOAD = false;
@@ -448,22 +445,8 @@ public abstract class AbstractSession implements Session {
 	}
 
 	@Override
-	public String getContentServer() {
-		return CONTENT_SERVER;
-	}
-
-	@Override
-	public String getWebServer() {
-		return WEB_SERVER;
-	}
-
-	@Override
 	public String getUploadServer() {
-		if (NEED_HTTPS_UPLOAD) {
-			return UPLOAD_SERVER_HTTPS;
-		} else {
-			return UPLOAD_SERVER;
-		}
+		return UPLOAD_SERVER;
 	}
 
 	private static class DBKeepAliveStrategy implements
