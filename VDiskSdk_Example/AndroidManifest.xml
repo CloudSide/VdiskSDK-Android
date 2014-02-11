@@ -14,8 +14,6 @@
     </uses-permission>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
     </uses-permission>
-    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" >
-    </uses-permission>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" >
     </uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
@@ -27,8 +25,8 @@
         android:label="@string/app_name" >
         <activity
             android:name=".OAuthActivity"
-            label="@string/app_name"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,14 +36,14 @@
         </activity>
         <activity
             android:name=".VDiskResultActivity"
-            label="@string/app_name"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".VDiskTestActivity"
-            label="@string/app_name"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
     </application>
