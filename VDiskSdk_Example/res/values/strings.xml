@@ -7,6 +7,11 @@
     <string name="auth_label">点击授权</string>
     <string name="use_weibo_token">使用微博token登录</string>
 
+    <!-- 微博认证登录功能使用 -->
+    <string name="weibosdk_demo_toast_auth_success">微博授权成功</string>
+    <string name="weibosdk_demo_toast_auth_failed">微博授权失败</string>
+    <string name="weibosdk_demo_toast_auth_canceled">取消微博授权</string>
+
     <!-- VDiskTestActivity类中界面列表使用 -->
     <string name="user_related">用户相关</string>
     <string name="user_info">用户信息</string>
@@ -104,16 +109,16 @@
 
     <!-- VDiskResultActivity类中使用 -->
     <string name="result_is_empty">结果为空</string>
-    
-     <!-- OAuthActivity类中使用 -->
+
+    <!-- OAuthActivity类中使用 -->
     <string name="token_cannot_empty">微博token不能为空，请在代码中进行设置</string>
     <string name="warning">警告</string>
-    
-    <!--UploadPicture和LargeFileUpload及DownloadFile类中使用-->
+
+    <!-- UploadPicture和LargeFileUpload及DownloadFile类中使用 -->
     <string name="suc_up_pic">照片已成功上传</string>
     <string name="suc_up_file">文件已成功上传</string>
     <string name="be_uploading">正在上传</string>
     <string name="be_downloading">正在下载</string>
     <string name="down_url">下载地址</string>
- 
+
 </resources>

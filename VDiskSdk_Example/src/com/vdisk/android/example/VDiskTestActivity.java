@@ -38,6 +38,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sina.weibo.sdk.demo.AccessTokenKeeper;
 import com.vdisk.android.VDiskAuthSession;
 import com.vdisk.net.VDiskAPI;
 import com.vdisk.net.VDiskAPI.Account;
@@ -426,6 +427,7 @@ public class VDiskTestActivity extends Activity {
 					// 调用此方法可以将账户注销
 					// Calling this method can logout the account
 					session.unlink();
+					AccessTokenKeeper.clear(VDiskTestActivity.this);
 					startActivity(new Intent(VDiskTestActivity.this,
 							OAuthActivity.class));
 					finish();
