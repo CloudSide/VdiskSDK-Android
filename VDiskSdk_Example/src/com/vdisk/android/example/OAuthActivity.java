@@ -1,8 +1,11 @@
 package com.vdisk.android.example;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +24,7 @@ import com.vdisk.android.VDiskAuthSession;
 import com.vdisk.android.VDiskDialogListener;
 import com.vdisk.net.exception.VDiskDialogError;
 import com.vdisk.net.exception.VDiskException;
+import com.vdisk.net.exception.VDiskServerException;
 import com.vdisk.net.session.AccessToken;
 import com.vdisk.net.session.AppKeyPair;
 import com.vdisk.net.session.Session.AccessType;
@@ -68,12 +72,57 @@ public class OAuthActivity extends Activity implements VDiskDialogListener {
 	private Button btn_oauth;
 	private CheckBox cbUseWeiboToken;
 	private VDiskAuthSession session;
+	private AccessToken mVDiskAccessToken;
+	private ProgressDialog dialog;
 
 	// 微博授权认证相关
 	// Weibo authorization-related
 	private WeiboAuth mWeiboAuth;
-	private Oauth2AccessToken mAccessToken;
+	private Oauth2AccessToken mWeiboAccessToken;
 	private SsoHandler mSsoHandler;
+
+	private static final int SUCCESS = 0;
+	private static final int FAILED = -1;
+	private Handler handler = new Handler() {
+
+		public void handleMessage(android.os.Message msg) {
+
+			Bundle values = msg.getData();
+			switch (msg.what) {
+			case SUCCESS: {
+				String error = values.getString("error");
+				String error_code = values.getString("error_code");
+
+				if (error == null && error_code == null) {
+					OAuthActivity.this.onComplete(values);
+					session.updateOAuth2Preference(OAuthActivity.this,
+							mVDiskAccessToken);
+				} else if (error.equals("access_denied")) {
+					// 用户或授权服务器拒绝授予数据访问权限
+					// User or authorization server refuses to grant data access
+					// permission
+					OAuthActivity.this.onCancel();
+				} else {
+					OAuthActivity.this
+							.onVDiskException(new VDiskServerException(error,
+									Integer.parseInt(error_code)));
+				}
+				dialog.dismiss();
+			}
+				break;
+			case FAILED: {
+				VDiskException e = (VDiskException) values
+						.getSerializable("error");
+				OAuthActivity.this.onVDiskException(e);
+				dialog.dismiss();
+			}
+				break;
+			default:
+				break;
+			}
+
+		};
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -96,13 +145,29 @@ public class OAuthActivity extends Activity implements VDiskDialogListener {
 		// Create a instace of Weibo authorization, and read Weibo Token.
 		mWeiboAuth = new WeiboAuth(this, Constants.APP_KEY,
 				Constants.REDIRECT_URL, Constants.SCOPE);
-		mAccessToken = AccessTokenKeeper.readAccessToken(this);
+		mWeiboAccessToken = AccessTokenKeeper.readAccessToken(this);
+		if (mWeiboAccessToken.isSessionValid()) {
+			WeiboAccessToken weiboToken = new WeiboAccessToken();
+			weiboToken.mAccessToken = mWeiboAccessToken.getToken();
+			session.enabledAndSetWeiboAccessToken(weiboToken);
+		}
 
+		mVDiskAccessToken = VDiskAuthSession.getOAuth2Preference(this,
+				appKeyPair);
 		// 如果已经登录，直接跳转到测试页面
 		// If you are already logged in, jump to the test page directly.
 		if (session.isLinked()) {
 			startActivity(new Intent(this, VDiskTestActivity.class));
 			finish();
+		} else if (!TextUtils.isEmpty(mVDiskAccessToken.mRefreshToken)
+				&& !VDiskAuthSession.isSessionValid(mVDiskAccessToken)) {
+			// 如果微盘AccessToken过期，使用RefreshToken刷新AccessToken并登录
+			// If VDisk AccessToken has expired ,use RefreshToken to refresh the
+			// VDisk AccessToken then login.
+			dialog = new ProgressDialog(this);
+			dialog.setMessage(getString(R.string.wait_for_load));
+
+			refreshLogin();
 		}
 	}
 
@@ -118,7 +183,7 @@ public class OAuthActivity extends Activity implements VDiskDialogListener {
 
 				if (cbUseWeiboToken.isChecked()) {
 
-					if (mAccessToken.isSessionValid()) {
+					if (mWeiboAccessToken.isSessionValid()) {
 						weiboFastLogin();
 					} else {
 						ssoAuthorize();
@@ -128,12 +193,47 @@ public class OAuthActivity extends Activity implements VDiskDialogListener {
 					// 使用微盘Token认证，需设置重定向网址
 					// Need to set REDIRECT_URL if you want to use VDisk token.
 					session.setRedirectUrl(REDIRECT_URL);
-
 					session.authorize(OAuthActivity.this, OAuthActivity.this);
 				}
 
 			}
 		});
+	}
+
+	/**
+	 * 
+	 * 使用RefreshToken刷新AccessToken并登录
+	 * 
+	 * Use RefreshToken to refresh the VDisk AccessToken then login.
+	 * 
+	 */
+	private void refreshLogin() {
+		dialog.show();
+		new Thread() {
+
+			public void run() {
+				Message msg = new Message();
+				try {
+					mVDiskAccessToken = session
+							.refreshOAuth2AccessToken(
+									mVDiskAccessToken.mRefreshToken,
+									OAuthActivity.this);
+				} catch (VDiskException e) {
+					msg.what = FAILED;
+					Bundle error = new Bundle();
+					error.putSerializable("error", e);
+					msg.setData(error);
+					handler.sendMessage(msg);
+					return;
+				}
+				Bundle values = new Bundle();
+				values.putSerializable(VDiskAuthSession.OAUTH2_TOKEN,
+						mVDiskAccessToken);
+				msg.setData(values);
+				msg.what = SUCCESS;
+				handler.sendMessage(msg);
+			};
+		}.start();
 	}
 
 	/**
@@ -197,7 +297,7 @@ public class OAuthActivity extends Activity implements VDiskDialogListener {
 
 		WeiboAccessToken weiboToken = new WeiboAccessToken();
 
-		OAuthActivity.WEIBO_ACCESS_TOKEN = mAccessToken.getToken();
+		OAuthActivity.WEIBO_ACCESS_TOKEN = mWeiboAccessToken.getToken();
 		weiboToken.mAccessToken = OAuthActivity.WEIBO_ACCESS_TOKEN;
 
 		// 开启使用微博Token的开关,如果要使用微博Token的话，必须执行此方法
@@ -252,13 +352,13 @@ public class OAuthActivity extends Activity implements VDiskDialogListener {
 		@Override
 		public void onComplete(Bundle values) {
 			// 从 Bundle 中解析 Token
-			mAccessToken = Oauth2AccessToken.parseAccessToken(values);
-			if (mAccessToken.isSessionValid()) {
+			mWeiboAccessToken = Oauth2AccessToken.parseAccessToken(values);
+			if (mWeiboAccessToken.isSessionValid()) {
 
 				// 保存 Token 到 SharedPreferences
 				// Save the Token to the SharedPreferences
 				AccessTokenKeeper.writeAccessToken(OAuthActivity.this,
-						mAccessToken);
+						mWeiboAccessToken);
 				Toast.makeText(OAuthActivity.this,
 						R.string.weibosdk_demo_toast_auth_success,
 						Toast.LENGTH_SHORT).show();
