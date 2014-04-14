@@ -558,10 +558,19 @@ public class VDiskTestActivity extends Activity {
 				try {
 					Account account = mApi.accountInfo();
 					msg.what = SUCCEED;
-					data.putString("msg", getString(R.string.total_space)
-							+ "-->" + account.quota + getString(R.string.abyte)
-							+ ";" + getString(R.string.used_space) + "-->"
-							+ account.consumed + getString(R.string.abyte));
+					data.putString("msg", getString(R.string.total_space) + ":"
+							+ account.quota + getString(R.string.abyte) + "\n"
+							+ getString(R.string.used_space) + ":"
+							+ account.consumed + getString(R.string.abyte)
+							+ "\n" + getString(R.string.screen_name) + ":"
+							+ account.screen_name + "\n"
+							+ getString(R.string.location) + ":"
+							+ account.location + "\n"
+							+ getString(R.string.gender) + ":" + account.gender
+							+ "\n" + getString(R.string.profile_image_url)
+							+ ":" + account.profile_image_url + "\n"
+							+ getString(R.string.avatar_large) + ":"
+							+ account.avatar_large);
 				} catch (VDiskException e) {
 					e.printStackTrace();
 					msg.what = FAILED;

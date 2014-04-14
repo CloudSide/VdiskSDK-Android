@@ -80,6 +80,11 @@
     <string name="total_space">总空间</string>
     <string name="used_space">已使用空间</string>
     <string name="abyte">字节</string>
+    <string name="screen_name">微博昵称</string>
+    <string name="location">所在地</string>
+    <string name="profile_image_url">头像(小)地址</string>
+    <string name="avatar_large">头像(大)地址</string>
+    <string name="gender">性别</string>
     <string name="adir">文件夹</string>
     <string name="file_name">文件名</string>
     <string name="file_size">文件大小</string>

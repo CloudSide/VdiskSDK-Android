@@ -75,6 +75,11 @@
     <string name="total_space">Total space</string>
     <string name="used_space">Space used</string>
     <string name="abyte">bytes</string>
+    <string name="screen_name">Name</string>
+    <string name="location">Location</string>
+    <string name="profile_image_url">Head(Small) url</string>
+    <string name="avatar_large">Head(Avatar) url</string>
+    <string name="gender">gender</string>
     <string name="adir">Folder</string>
     <string name="file_name">File name</string>
     <string name="file_size">File size</string>

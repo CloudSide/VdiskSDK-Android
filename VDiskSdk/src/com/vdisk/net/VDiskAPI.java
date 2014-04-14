@@ -120,9 +120,32 @@ public class VDiskAPI<SESS_T extends Session> {
 		/** The user's weibo ID. */
 		public final long sina_uid;
 
+		/** 是否是微博认证用户，即加V用户 */
+		public boolean verified;
+		/** 用户微博昵称 */
+		public String screen_name;
+		/** 用户微博友好显示名称 */
+		public String user_name;
+		/** 用户微博资料所在地 */
+		public String location;
+		/** 用户微博头像地址 */
+		public String profile_image_url;
+		/** 用户微博大头像地址 */
+		public String avatar_large;
+		/** 用户微博资料性别 m：男、f：女、n：未知 */
+		public String gender;
+
 		protected Account(Map<String, Object> map) {
 			uid = getFromMapAsLong(map, "uid");
 			sina_uid = getFromMapAsLong(map, "sina_uid");
+
+			verified = getFromMapAsBoolean(map, "verified");
+			screen_name = getFromMapAsString(map, "screen_name");
+			user_name = getFromMapAsString(map, "user_name");
+			location = getFromMapAsString(map, "location");
+			profile_image_url = getFromMapAsString(map, "profile_image_url");
+			avatar_large = getFromMapAsString(map, "avatar_large");
+			gender = getFromMapAsString(map, "gender");
 
 			Object quotaInfo = map.get("quota_info");
 			@SuppressWarnings("unchecked")
