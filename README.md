@@ -9,10 +9,6 @@
 
 邮箱: [cloudside@sina.cn](mailto:cloudside@sina.cn)
 
-RESTful API文档:
-[![](http://vdisk.me/static/images/vi/icon/16x16.png)](http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc)
-http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc
-
 [![](http://service.t.sina.com.cn/widget/qmd/1935603843/02781ba4/4.png)](http://weibo.com/zhaopengedgardo)
 
 [![](http://service.t.sina.com.cn/widget/qmd/1656360925/02781ba4/4.png)](http://weibo.com/smcz)
@@ -28,15 +24,29 @@ http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc
 
 1. 请先前往 [微盘开发者中心](http://vdisk.weibo.com/developers/) 注册为微盘开发者, 并创建应用；
 
-2. Clone或下载Github仓库中的VDiskSdk及VDiskSdk_Example两个项目，并导入Eclipse；
+2. Clone或下载Github仓库中的VDiskSdk及VDiskSdk_Example两个工程，并导入Eclipse；
 
-3. 确保设置VDiskSdk为VDiskSdk_Example的依赖项目（Library）;
+3. 确保设置VDiskSdk为VDiskSdk_Example的依赖工程（Library）;
 
 4. 进入工程VDiskSdk_Example/com.vdisk.android.example.OAuthActivity，根据应用信息修改常量CONSUMER_KEY(App Key)，CONSUMER_SECRET(App Secret)，REDIRECT_URL(应用回调地址)；
 
 5. 编译并运行工程VDiskSdk_Example。
 
 -----
+开发者常见问题FAQ（更新中）
+===
+Q:在开发者平台创建应用时，“回调地址”填什么？  
+A:应用回调地址对“移动客户端”应用来说对用户是不可见的，所以定义为何种形式都将不影响，但是没有定义将无法使用SDK认证登录。建议使用一个可访问的网址，例如“http://vdisk.weibo.com/”，并在代码中填入对应位置。“白名单”填写类似
+
+Q:为何使用demo上传的文件在[微盘官方网站](vdisk.weibo.com)看不到，也无法下载或查看官方网站上的文件和目录？  
+A:每个应用默认有属于自己的sandbox级的空间。经过特殊授权的应用可以使用basic级的公共空间。某应用自己的sandbox空间只能被本应用访问，其它应用都不能访问。[用户空间隔离](http://vdisk.weibo.com/developers/index.php?module=api&action=rights),申请basic权限请至“微盘开放平台-我的应用-申请basic访问权限”。
+
+Q:SDK是否有重命名文件或目录的功能接口？  
+A:请使用SDK Example中的移动接口，通过传入带文件名的完整路径，达到重命名目的。
+
+Q&A:如果您对SDK中提供的某个功能API不明确，可查看[微盘 Open RESTful API文档](http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc)
+
+---
 Usage
 =====
 
