@@ -1,20 +1,17 @@
 [![](http://vdisk.me/static/images/vi/logo/32x32.png)](#) VdiskSDK-Android
 ============
 
-
-请先前往 [微盘开发者中心](http://vdisk.weibo.com/developers/) 注册为微盘开发者, 并创建应用.
-
-RESTful API文档:
-[![](http://vdisk.me/static/images/vi/icon/16x16.png)](http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc)
-http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc
-
-关于微盘OPENAPI、SDK使用以及技术问题请联系: [@俺是不是吐槽太多了](http://weibo.com/yinkai1205) [@王彤CallMeWT](http://weibo.com/lilytong) [@edgardo_赵鹏](http://weibo.com/zhaopengedgardo) [@一个开发者](http://weibo.com/smcz) [@Littlebox222](http://weibo.com/littlebox222)
+关于微盘OPENAPI、SDK使用以及技术问题请联系: [@俺是不是吐槽太多了](http://weibo.com/yinkai1205) [@王彤](http://weibo.com/lilytong) [@edgardo_赵鹏](http://weibo.com/zhaopengedgardo) [@一个开发者](http://weibo.com/smcz) [@Littlebox222](http://weibo.com/littlebox222)
 
 微盘Android SDK开发者交流群：240235926
 
 微盘OpenAPI、全平台SDK交流群：134719337， 162285095
 
 邮箱: [cloudside@sina.cn](mailto:cloudside@sina.cn)
+
+RESTful API文档:
+[![](http://vdisk.me/static/images/vi/icon/16x16.png)](http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc)
+http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc
 
 [![](http://service.t.sina.com.cn/widget/qmd/1935603843/02781ba4/4.png)](http://weibo.com/zhaopengedgardo)
 
@@ -23,6 +20,21 @@ http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc
 [![](http://service.t.sina.com.cn/widget/qmd/1727404360/02781ba4/4.png)](http://weibo.com/yinkai1205)
 
 [![](http://service.t.sina.com.cn/widget/qmd/1757517965/02781ba4/4.png)](http://weibo.com/lilytong)
+
+---
+运行示例代码
+===
+简要描述一下使用Eclipse运行Example的步骤：
+
+1. 请先前往 [微盘开发者中心](http://vdisk.weibo.com/developers/) 注册为微盘开发者, 并创建应用；
+
+2. Clone或下载Github仓库中的VDiskSdk及VDiskSdk_Example两个项目，并导入Eclipse；
+
+3. 确保设置VDiskSdk为VDiskSdk_Example的依赖项目（Library）;
+
+4. 进入工程VDiskSdk_Example/com.vdisk.android.example.OAuthActivity，根据应用信息修改常量CONSUMER_KEY(App Key)，CONSUMER_SECRET(App Secret)，REDIRECT_URL(应用回调地址)；
+
+5. 编译并运行工程VDiskSdk_Example。
 
 -----
 Usage
@@ -67,7 +79,7 @@ session.authorize(OAuthActivity.this, OAuthActivity.this);
 
 /**
    * 认证结束后的回调方法
-	 * 
+     * 
 	 * Callback method after authentication.
 	 */
 	@Override
