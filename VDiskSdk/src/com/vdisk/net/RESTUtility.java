@@ -34,6 +34,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.params.ClientPNames;
 import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -212,11 +213,12 @@ public class RESTUtility {
 		return streamRequestAndResponse(method, session, target, params, 0,
 				null, false, -1);
 	}
-
+	
 	static public RequestAndResponse streamRequestAndResponse(
 			RequestMethod method, Session session, String target,
 			String params[], long range, String md5, boolean needSign,
-			int socketTimeoutOverrideMs) throws VDiskException {
+			int socketTimeoutOverrideMs, boolean handleRedirect) throws VDiskException {
+
 		String curlHeader = "";
 		if (Logger.DEBUG_MODE) {
 			if (session.getWeiboAccessToken() != null) {
@@ -295,6 +297,11 @@ public class RESTUtility {
 		if (needSign) {
 			session.sign(req);
 		}
+		
+		if (handleRedirect) {
+			HttpParams reqParams = req.getParams();
+			reqParams.setParameter(ClientPNames.HANDLE_REDIRECTS, true);
+		}
 
 		Log.i(TAG, "url:" + target);
 		HttpResponse resp = null;
@@ -304,6 +311,13 @@ public class RESTUtility {
 			resp = execute(session, req);
 		}
 		return new RequestAndResponse(req, resp);
+	}
+
+	static public RequestAndResponse streamRequestAndResponse(
+			RequestMethod method, Session session, String target,
+			String params[], long range, String md5, boolean needSign,
+			int socketTimeoutOverrideMs) throws VDiskException {
+		return streamRequestAndResponse(method, session, target, params, range, md5, needSign, socketTimeoutOverrideMs, false);
 	}
 
 	/**
@@ -671,7 +685,12 @@ public class RESTUtility {
 		try {
 			// We have to encode the whole line, then remove + and / encoding
 			// to get a good OAuth URL.
-			target = URLEncoder.encode("/" + apiVersion + target, "UTF-8");
+			if (apiVersion >= 1) {
+				target = URLEncoder.encode("/" + apiVersion + target, "UTF-8");
+			} else {
+				target = URLEncoder.encode(target, "UTF-8");
+			}
+
 			target = target.replace("%2F", "/");
 
 			if (params != null && params.length > 0) {

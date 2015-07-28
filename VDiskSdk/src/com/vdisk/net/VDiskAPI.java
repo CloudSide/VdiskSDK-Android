@@ -1237,7 +1237,7 @@ public class VDiskAPI<SESS_T extends Session> {
 
 			RequestAndResponse rp = RESTUtility.streamRequestAndResponse(
 					RequestMethod.GET, session, location, null,
-					getRange(targetFile), metadata.md5, false, -1);
+					getRange(targetFile), metadata.md5, false, -1, true);
 
 			return new VDiskInputStream(rp.request, rp.response, metadata,
 					location);
